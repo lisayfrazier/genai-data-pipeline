@@ -1,3 +1,13 @@
+## GenAI Systems Engineering Demo
+
+This project demonstrates a modular AI-style data pipeline designed to mirror production GenAI preprocessing workflows.
+
+Key concepts:
+- Data validation safeguards
+- Modular ETL architecture
+- Logging-ready design
+- Pipeline orchestration
+
 # GenAI Data Pipeline (Mini ETL)
 
 A simple ETL pipeline in Python that:
