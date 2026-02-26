@@ -1,0 +1,4 @@
+name,score,passed
+Alice,85,True
+Bob,92,True
+Charlie,78,False
