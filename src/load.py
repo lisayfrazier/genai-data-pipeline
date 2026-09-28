@@ -1,17 +1,13 @@
+"""Write results and validation errors to CSV."""
+
 import csv
-import os
-from typing import List, Dict, Any
+from pathlib import Path
 
 
-def load_to_csv(data: List[Dict[str, Any]], path: str):
-    """Write rows to a CSV file."""
-
-    os.makedirs(os.path.dirname(path), exist_ok=True)
-
-    with open(path, "w", newline="") as f:
-        writer = csv.DictWriter(
-            f,
-            fieldnames=["name", "score", "passed"]
-        )
+def write_csv(rows, path, columns):
+    destination = Path(path)
+    destination.parent.mkdir(parents=True, exist_ok=True)
+    with destination.open("w", newline="", encoding="utf-8") as target:
+        writer = csv.DictWriter(target, fieldnames=columns)
         writer.writeheader()
-        writer.writerows(data)
+        writer.writerows(rows)
