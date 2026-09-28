@@ -1,28 +1,31 @@
-## GenAI Systems Engineering Demo
+# Python CSV Data Pipeline (Mini ETL)
 
-This project demonstrates a modular AI-style data pipeline designed to mirror production GenAI preprocessing workflows.
+A small Python project demonstrating an extract, transform, and load workflow. It reads names and scores from a CSV file, converts each score to an integer, adds a pass/fail flag, and writes a new CSV file.
 
-Key concepts:
-- Data validation safeguards
-- Modular ETL architecture
-- Logging-ready design
-- Pipeline orchestration
+This is a learning project. It does not call an LLM or run a production GenAI service.
 
-# GenAI Data Pipeline (Mini ETL)
+## Run
 
-A simple ETL pipeline in Python that:
-- Extracts rows from `data/input.csv`
-- Transforms the data by adding a `passed` flag based on a score threshold
-- Loads output to `output/results.csv`
+From the repository root, with Python 3 installed:
 
-## How to Run
 ```bash
-py main.py
-## Data Validation
+python main.py
+```
 
-The pipeline performs strict validation:
-- Ensures required columns exist
-- Ensures score values are integers
-- Fails fast on corrupted data
+By default, the script reads `data/input.csv`, writes `output/results.csv`, and uses a threshold of 80. Customize the paths and threshold:
 
-This mirrors real-world AI system data integrity safeguards.
+```bash
+python main.py --input data/input.csv --output output/results.csv --threshold 80
+```
+
+The input must include `name` and `score` columns, and score values must be convertible to integers. The output contains `name`, `score`, and `passed`. Invalid or missing score data currently raises an error; the project does not yet provide a separate validation report.
+
+## Structure
+
+- `main.py` parses command-line options.
+- `src/extract.py` reads CSV rows.
+- `src/transform.py` adds the pass flag.
+- `src/load.py` writes the result.
+- `src/pipeline.py` connects the steps.
+
+Created by [Lisa Y. Frazier](https://github.com/lisayfrazier).
