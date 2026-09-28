@@ -1,10 +1,5 @@
-from typing import List, Dict, Any
+"""Apply a pass threshold to validated score records."""
 
 
-def add_passed_flag(data: List[Dict[str, Any]], threshold: int = 80):
-    """Add a passed=True/False field based on score."""
-    
-    for row in data:
-        row["passed"] = row["score"] >= threshold
-
-    return data
+def add_passed_flag(data, threshold=80):
+    return [{**row, "passed": row["score"] >= threshold} for row in data]
